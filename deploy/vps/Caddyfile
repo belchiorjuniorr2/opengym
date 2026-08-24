@@ -1,0 +1,6 @@
+# Borda HTTPS do Zé Treino — certificados emitidos automaticamente.
+# SITE_ADDRESS vem do .env (ex.: treino.seudominio.com.br ou 200-100-50-25.nip.io)
+{$SITE_ADDRESS} {
+	encode gzip
+	reverse_proxy web:80
+}
