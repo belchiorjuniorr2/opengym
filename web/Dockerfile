@@ -41,6 +41,8 @@ LABEL maintainer="Duarte Santos https://gitlab.com/DuarteSantos8" \
 COPY web/nginx.conf.template /etc/nginx/templates/default.conf.template
 COPY --from=build /app/dist /usr/share/nginx/html
 # exercise media (img/gif) is mounted at runtime from the media volume
+COPY web/nginx-start.sh /usr/local/bin/nginx-start.sh
+RUN chmod +x /usr/local/bin/nginx-start.sh
 
 # Set Default ENVs for nginx
 ENV NGINX_PORT=80
