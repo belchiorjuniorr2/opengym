@@ -73,8 +73,8 @@ detecta tudo sozinho.
 
    | Variável         | Valor                                                          |
    |------------------|----------------------------------------------------------------|
-   | `BACKEND`        | nome do serviço da API na rede interna: `api.railway.internal` |
-   | `PORT`           | `3000` (a mesma da API)                                        |
+   | `BACKEND`        | domínio público da API (ex.: `api-production-xxxx.up.railway.app`) |
+   | `USE_PUBLIC_UPSTREAM` | `1` (proxy https para o domínio acima)                    |
    | `NGINX_PORT`     | `80`                                                           |
    | `VITE_IMG_BASE`  | `https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@7455efae41b330c265e7cd4b78dfa848e7ce5ebd/images/` |
    | `VITE_GIF_BASE`  | `https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@7455efae41b330c265e7cd4b78dfa848e7ce5ebd/videos/` |
@@ -84,6 +84,19 @@ detecta tudo sozinho.
    **tempo de build** (o Railway repassa variáveis como build args do Docker).
 
 4. **Settings → Networking → Generate Domain** — esse é o endereço público do app.
+
+> **Importante:** não defina `startCommand` para o `web` (nem no painel nem no
+> `railway.json`). O container precisa iniciar pelo `docker-entrypoint.sh` da
+> imagem oficial do nginx — é ele que renderiza o template de configuração. O
+> repositório já traz o script `web/nginx-start.sh`, que garante essa renderização.
+
+> **Sobre `USE_PUBLIC_UPSTREAM`:** por padrão (`0`, usado no docker compose) o
+> nginx proxifica `/api` para `http://BACKEND:PORT` numa rede interna. No
+> Railway, o DNS privado entre serviços pode não estar disponível para pares
+> sem porta privada vinculada; nesse caso use o modo `1` apontando `BACKEND`
+> para o domínio público da API (gerado em *Networking* do serviço `api`,
+> target port `3000`). O tráfego sai pela borda TLS pública — ok para uma
+> instância pessoal, e as passkeys continuam vinculadas só ao domínio do app.
 
 ### 2.3 Passkeys no domínio
 
