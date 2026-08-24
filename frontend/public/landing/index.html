@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Zé Treino — treino sério, sem complicação</title>
+<meta name="description" content="Rastreador de treinos e peso corporal: planos semanais, progressão automática de carga, recordes e mapa muscular. Grátis, offline, sem anúncios. Instale no celular.">
+<meta property="og:title" content="Zé Treino 💪">
+<meta property="og:description" content="Seu treinador de bolso: progressão automática, recordes e mapa muscular. Gratuito e sem anúncios.">
+<meta name="theme-color" content="#0c0e12">
+<link rel="icon" type="image/png" href="/icon-180.png">
+<link rel="apple-touch-icon" href="/icon-180.png">
+<style>
+  :root{
+    --bg:#0c0e12; --bg2:#10131a; --card:#14171f; --line:#242938;
+    --txt:#eef0f4; --dim:#9aa3b2; --dimmer:#5d6575;
+    --lime:#a3e635; --lime-dim:#84cc16;
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+  /* ---------- hero ---------- */
+  header{position:relative;padding:26px 0}
+  nav{display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+  .logo .dot{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--lime),#4d7c0f);
+    display:grid;place-items:center;font-size:18px}
+  nav .gh{color:var(--dim);font-size:14px;text-decoration:none;border:1px solid var(--line);
+    padding:8px 14px;border-radius:99px;transition:.2s}
+  nav .gh:hover{color:var(--txt);border-color:var(--dimmer)}
+
+  .hero{padding:64px 0 30px;text-align:center;position:relative}
+  .hero::before{content:"";position:absolute;inset:-40% 20% auto;height:520px;
+    background:radial-gradient(closest-side,rgba(163,230,53,.13),transparent 70%);
+    pointer-events:none}
+  .pill{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--lime);
+    border:1px solid rgba(163,230,53,.35);background:rgba(163,230,53,.08);
+    padding:7px 15px;border-radius:99px;margin-bottom:22px}
+  h1{font-size:clamp(38px,7vw,64px);line-height:1.04;letter-spacing:-.03em;font-weight:800}
+  h1 em{font-style:normal;color:var(--lime)}
+  .sub{max-width:600px;margin:20px auto 0;color:var(--dim);font-size:clamp(16px,2.4vw,19px);line-height:1.55}
+
+  .cta-row{display:flex;gap:14px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+  .btn{appearance:none;border:0;cursor:pointer;font:inherit;font-weight:700;font-size:17px;
+    padding:16px 30px;border-radius:14px;text-decoration:none;display:inline-flex;
+    align-items:center;gap:10px;transition:.18s}
+  .btn-primary{background:var(--lime);color:#131a02;box-shadow:0 8px 28px rgba(163,230,53,.28)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(163,230,53,.38)}
+  .btn-ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--dimmer);background:var(--card)}
+
+  .install-note{margin-top:16px;font-size:13.5px;color:var(--dimmer);min-height:18px}
+
+  /* ---------- stats strip ---------- */
+  .strip{display:flex;justify-content:center;gap:clamp(18px,4vw,44px);flex-wrap:wrap;
+    margin:44px 0 10px;color:var(--dim);font-size:14.5px}
+  .strip b{color:var(--txt)}
+
+  /* ---------- screenshots ---------- */
+  .shots{display:flex;justify-content:center;align-items:flex-end;gap:clamp(10px,3vw,30px);
+    margin:56px 0 10px;perspective:1200px}
+  .shot{width:min(250px,29vw);border-radius:26px;overflow:hidden;
+    border:1px solid var(--line);background:var(--bg2);
+    box-shadow:0 30px 60px rgba(0,0,0,.5);transition:.25s}
+  .shot img{display:block;width:100%}
+  .shot.side{transform:rotate(∓0deg) translateY(14px) scale(.94);opacity:.85}
+  .shot.side.l{transform:rotate(-4deg) translateY(18px) scale(.93)}
+  .shot.side.r{transform:rotate(4deg) translateY(18px) scale(.93)}
+  .shot.main{transform:translateY(0) scale(1.02)}
+  .shot:hover{transform:translateY(-8px) scale(1.03);opacity:1;z-index:2}
+
+  /* ---------- features ---------- */
+  section{padding:74px 0}
+  .kicker{color:var(--lime);font-weight:700;font-size:13px;letter-spacing:.14em;
+    text-transform:uppercase;text-align:center;margin-bottom:12px}
+  h2{font-size:clamp(26px,4.4vw,38px);letter-spacing:-.025em;text-align:center;font-weight:800}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+    gap:14px;margin-top:44px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 22px;transition:.2s}
+  .card:hover{transform:translateY(-4px);border-color:#39415a}
+  .card .ico{font-size:26px;width:52px;height:52px;border-radius:14px;background:var(--bg2);
+    display:grid;place-items:center;margin-bottom:15px;border:1px solid var(--line)}
+  .card h3{font-size:16.5px;margin-bottom:7px;letter-spacing:-.01em}
+  .card p{color:var(--dim);font-size:14.5px;line-height:1.55}
+
+  /* ---------- steps ---------- */
+  .steps{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:42px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px;width:min(280px,100%);text-align:left}
+  .step .n{color:var(--lime);font-weight:800;font-size:14px;letter-spacing:.06em}
+  .step h3{font-size:16px;margin:8px 0 6px}
+  .step p{color:var(--dim);font-size:14px;line-height:1.5}
+
+  /* ---------- privacy banner ---------- */
+  .privacy{background:linear-gradient(135deg,rgba(163,230,53,.09),rgba(163,230,53,.02));
+    border:1px solid rgba(163,230,53,.25);border-radius:22px;padding:36px clamp(22px,5vw,48px);
+    display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+  .privacy .big{font-size:40px}
+  .privacy h3{font-size:20px;letter-spacing:-.01em;margin-bottom:6px}
+  .privacy p{color:var(--dim);font-size:15px;line-height:1.55;max-width:640px}
+
+  /* ---------- howto sheet ---------- */
+  .sheet-backdrop{position:fixed;inset:0;background:rgba(5,7,10,.72);backdrop-filter:blur(6px);
+    display:none;align-items:flex-end;justify-content:center;z-index:50}
+  .sheet-backdrop.open{display:flex}
+  .sheet{background:var(--bg2);border:1px solid var(--line);width:min(480px,100%);
+    border-radius:24px 24px 0 0;padding:28px 26px calc(28px + env(safe-area-inset-bottom))}
+  @media(min-width:560px){.sheet-backdrop{align-items:center}.sheet{border-radius:24px}}
+  .sheet h3{font-size:19px;margin-bottom:16px}
+  .sheet ol{margin:0 0 20px 20px;color:var(--dim);font-size:15px;line-height:1.9}
+  .sheet ol b{color:var(--txt)}
+  .sheet .close{width:100%;text-align:center}
+
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:34px 0 46px;
+    color:var(--dimmer);font-size:13.5px;text-align:center;line-height:1.8}
+  footer a{color:var(--dim)}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav>
+    <div class="logo"><span class="dot">💪</span>Zé Treino</div>
+    <a class="gh" href="#" id="openBtn2">Instalar</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <span class="pill">✨ Gratuito · open source · sem anúncios</span>
+    <h1>Treino sério,<br>sem <em>complicação</em>.</h1>
+    <p class="sub">Zé Treino é o rastreador de treinos e peso corporal que planeja sua semana,
+      guia cada série e faz a conta da progressão por você. No celular, offline,
+      com seus dados sob seu controle.</p>
+
+    <div class="cta-row">
+      <button class="btn btn-primary" id="installBtn">📲 Instalar o app</button>
+      <a class="btn btn-ghost" href="/">Abrir agora →</a>
+    </div>
+    <div class="install-note" id="note"></div>
+
+    <div class="strip">
+      <span><b>1.324</b> exercícios com vídeo</span>
+      <span><b>Progressão</b> automática</span>
+      <span><b>Passkey</b>, sem senha</span>
+      <span><b>Offline</b>-first</span>
+    </div>
+
+    <div class="shots" aria-hidden="true">
+      <div class="shot side l"><img src="/screenshots/stats.png" alt="Estatísticas" loading="lazy"></div>
+      <div class="shot main"><img src="/screenshots/home.png" alt="Tela inicial" loading="eager"></div>
+      <div class="shot side r"><img src="/screenshots/workout.png" alt="Treino guiado" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section id="features">
+    <div class="kicker">Tudo incluído</div>
+    <h2>Feito pra quem leva treino a sério</h2>
+    <div class="grid">
+      <div class="card"><div class="ico">🏋️</div><h3>Treinos guiados</h3>
+        <p>Peso da última vez pré-preenchido, descanso cronometrado, tela ligada do início ao fim e detecção automática de recorde.</p></div>
+      <div class="card"><div class="ico">📈</div><h3>Progressão automática</h3>
+        <p>Linear, Greyskull LP ou dupla: a carga já está ajustada quando você chega — e o app explica o porquê de cada número.</p></div>
+      <div class="card"><div class="ico">🔗</div><h3>Supersets &amp; isometria</h3>
+        <p>Junte exercícios num toque e execute em sequência. Pranchas e hangs contam o tempo de trabalho por série.</p></div>
+      <div class="card"><div class="ico">💪</div><h3>1RM estimado</h3>
+        <p>Curva de força por exercício, calculadora de máximos e acompanhamento de carga ao longo dos meses.</p></div>
+      <div class="card"><div class="ico">🗺️</div><h3>Mapa muscular</h3>
+        <p>Equilíbrio, fadiga e força por músculo. Descubra o que está ficando para trás antes de virar lesão.</p></div>
+      <div class="card"><div class="ico">⚖️</div><h3>Peso corporal</h3>
+        <p>Registro rápido com meta, curva de tendência e ganhos/perdas coloridos pelo caminho até o objetivo.</p></div>
+      <div class="card"><div class="ico">🔑</div><h3>Passkey, não senha</h3>
+        <p>Entra com Face ID ou digital. Cada perfil com seus dados, sincronizados entre celular e computador.</p></div>
+      <div class="card"><div class="ico">📴</div><h3>Funciona offline</h3>
+        <p>Sinal ruim no subsolo da academia? Nenhum problema: treine tudo offline e sincronize quando voltar.</p></div>
+      <div class="card"><div class="ico">🚫</div><h3>Sem pegadinha</h3>
+        <p>Sem anúncios, sem assinatura, sem telemetria. Código aberto (AGPL) — seus dados são seus, ponto.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Leva 30 segundos</div>
+    <h2>Instale agora e dê o primeiro passo</h2>
+    <div class="steps">
+      <div class="step"><div class="n">PASSO 1</div><h3>Toque em instalar</h3>
+        <p>No botão lá em cima. O próprio navegador cuida de tudo.</p></div>
+      <div class="step"><div class="n">PASSO 2</div><h3>Confirme</h3>
+        <p>Aparece um balãozinho pedindo confirmação — é só aceitar.</p></div>
+      <div class="step"><div class="n">PASSO 3</div><h3>Treine</h3>
+        <p>O ícone fica na sua tela inicial, como um app normal. É isso.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="privacy">
+      <div class="big">🔒</div>
+      <div>
+        <h3>Seus dados no seu bolso. Literalmente.</h3>
+        <p>Nada de conta em servidor de terceiros vendendo seu histórico de treino.
+           Perfil com passkey, sincronização entre seus dispositivos e exportação em JSON
+           sempre disponível. Zero telemetria — dá pra auditar, o código é aberto.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="wrap">
+  <div>Zé Treino 💪 — treino sério, sem complicação.<br>
+  Gratuito e open source (AGPL v3) · <a href="https://gitlab.com/DuarteSantos8/opengym" target="_blank" rel="noopener">código-fonte</a> · construído sobre o open source openGym</div>
+</footer>
+
+<!-- instruções manuais (iOS / navegadores sem prompt) -->
+<div class="sheet-backdrop" id="backdrop">
+  <div class="sheet" role="dialog" aria-modal="true">
+    <h3 id="sheetTitle">Instalar o Zé Treino</h3>
+    <ol id="sheetSteps"></ol>
+    <button class="btn btn-primary close" id="closeSheet">Entendi</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var btn = document.getElementById('installBtn');
+  var note = document.getElementById('note');
+  var backdrop = document.getElementById('backdrop');
+  var title = document.getElementById('sheetTitle');
+  var steps = document.getElementById('sheetSteps');
+  var deferred = null;
+
+  var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent)
+    || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  function installed(){
+    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  }
+  function openSheet(t, items){
+    title.textContent = t;
+    steps.innerHTML = items.map(s => '<li>' + s + '</li>').join('');
+    backdrop.classList.add('open');
+  }
+  document.getElementById('closeSheet').onclick = () => backdrop.classList.remove('open');
+  backdrop.addEventListener('click', e => { if (e.target === backdrop) backdrop.classList.remove('open'); });
+
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferred = e;
+  });
+
+  function updateUI(){
+    if (installed()){
+      btn.textContent = '✅ App instalado';
+      btn.onclick = () => location.href = '/';
+      note.textContent = 'Você já está usando o app instalado.';
+      return;
+    }
+    btn.onclick = async function(){
+      if (deferred){
+        deferred.prompt();
+        var choice = await deferred.userChoice;
+        deferred = null;
+        if (choice.outcome === 'accepted'){ updateUI(); }
+        return;
+      }
+      if (isIOS){
+        openSheet('Instalar no iPhone/iPad', [
+          'Abra este site no <b>Safari</b>',
+          'Toque no botão <b>Compartilhar</b> (quadradinho com seta ↑)',
+          'Role e toque em <b>Adicionar à Tela de Início</b>',
+          'Confirme em <b>Adicionar</b> — pronto! 💪'
+        ]);
+      } else {
+        openSheet('Instalar no dispositivo', [
+          '<b>Chrome/Edge (Android):</b> menu ⋮ → <b>Instalar aplicativo</b> ou <b>Adicionar à tela inicial</b>',
+          '<b>Firefox:</b> menu → <b>Instalar</b>',
+          '<b>Computador:</b> ícone de instalação ⊕ na barra de endereço'
+        ]);
+      }
+    };
+    if (!deferred && !isIOS){
+      note.textContent = 'Dica: se o navegador não oferecer o prompt, siga as instruções que aparecem ao clicar.';
+    }
+  }
+
+  document.getElementById('openBtn2').addEventListener('click', e => {
+    e.preventDefault();
+    btn.click();
+  });
+  window.matchMedia('(display-mode: standalone)').addEventListener?.('change', updateUI);
+  updateUI();
+})();
+</script>
+</body>
+</html>
