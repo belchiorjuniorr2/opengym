@@ -5,11 +5,8 @@ server {
     root /usr/share/nginx/html;
     index index.html;
 
-    # API → backend container.
-    # O bloco é montado por web/nginx-start.sh em ${PROXY_CONF}:
-    #  - padrão (docker compose): proxy http direto para ${BACKEND}:${PORT}
-    #  - USE_PUBLIC_UPSTREAM=1: proxy https para um domínio público da API
-    #    (plataformas sem rede privada compartilhada, ex.: Railway/Vercel)
+    # API -> backend. O bloco abaixo e montado pelo script web/nginx-start.sh
+    # via variavel PROXY_CONF (veja comentarios nesse script para os dois modos).
     location /api/ {
 ${PROXY_CONF}
     }
