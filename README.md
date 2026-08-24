@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/banner.png" alt="openGym" width="720">
+<img src="assets/banner.png" alt="Zé Treino" width="720">
 
 <br>
 
@@ -43,7 +43,7 @@ Sem conta no servidor de ninguém, sem assinatura, sem anúncios. Apenas `docker
 ## Por quê
 
 A maioria dos apps de treino tranca seus dados atrás de um login nos servidores deles, vive
-cobrando upgrade, ou desaparece quando a startup acaba. O openGym é o oposto: **roda na sua
+cobrando upgrade, ou desaparece quando a startup acaba. O Zé Treino é o oposto: **roda na sua
 máquina, seus dados ficam numa pasta que você controla, e é seu para fazer fork.** E continua
 moderno — instalável como app na tela inicial, login por passkey, suporte offline, sync entre
 celular e computador.
@@ -87,7 +87,7 @@ Você precisa de [Docker](https://docs.docker.com/get-docker/) com Compose.
 
 ```bash
 git clone https://gitlab.com/DuarteSantos8/opengym
-cd openGym
+cd Zé Treino
 cp .env.example .env
 docker compose pull   # baixa imagens pré-construídas (amd64 + arm64) — pule para construir do código
 docker compose up -d
@@ -96,11 +96,11 @@ docker compose up -d
 Abra **http://localhost:8080**, toque em **Criar perfil**, e pronto. O primeiro acesso baixa
 as mídias dos exercícios (~140 MB) uma única vez.
 
-> **Sobre essa mídia:** ela chega ao openGym via
+> **Sobre essa mídia:** ela chega ao Zé Treino via
 > [hasaneyldrm/exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset), que
 > redistribui [ExerciseDB v1](https://exercisedb.dev/) — os metadados e textos de instrução são
 > MIT, mas imagens e animações são conteúdo de terceiros sob licença *nem* MIT *nem* AGPL do
-> openGym, e a titularidade está em disputa entre Gym visual e ExerciseDB. O openGym não as
+> Zé Treino, e a titularidade está em disputa entre Gym visual e ExerciseDB. O Zé Treino não as
 > distribui: sua instância baixa direto da origem. Reutilizar essa mídia por conta própria,
 > comercialmente ou não, exige acerto com o detentor dos direitos — veja [NOTICE.md](NOTICE.md).
 Prefere construir as imagens você mesmo em vez de baixar do registry do GitLab? Remova o passo
@@ -126,7 +126,7 @@ instalar-e-pronto.
 
 - **Android:** [**baixe o APK**](https://opengym.duarte-santos.ch) — ou direto do
   [registry de pacotes do GitLab](https://gitlab.com/DuarteSantos8/opengym/-/packages), onde todo
-  build fica junto do seu `.sha256` — e instale por sideload; o openGym propositalmente não está
+  build fica junto do seu `.sha256` — e instale por sideload; o Zé Treino propositalmente não está
   na Play Store. Ou construa você mesmo: **[docs/MOBILE.md](docs/MOBILE.md)**.
 - **iPhone:** a Apple não permite instalar apps fora da App Store, então não há download iOS.
   Faça self-host e adicione à tela inicial pelo Safari (é uma PWA completa), ou compile o app
@@ -176,7 +176,7 @@ Tudo via `.env` (veja [.env.example](.env.example)):
 | `NGINX_PORT`  | Porta que o container web escuta, dentro do container | `80`                    |
 | `BACKEND`     | Nome do serviço de API para onde `/api` é proxificado — mude se o seu não se chama `api` | `api` |
 | `PORT`        | Porta que a API escuta; o container web proxifica para o mesmo valor | `3000`  |
-| `RP_NAME`     | Nome mostrado no prompt da passkey                    | `openGym`               |
+| `RP_NAME`     | Nome mostrado no prompt da passkey                    | `Zé Treino`               |
 | `SESSION_DAYS`| Duração de uma sessão, em dias                        | `90`                    |
 | `ADMIN_UIDS`  | Ids de usuário que recebem o painel admin (separados por vírgula) | *(nenhum)*   |
 | `INVITE_ONLY` | Exigir código de convite para criar perfil            | *(desligado)*           |
@@ -237,9 +237,9 @@ build Docker.
 - **Merge requests** — [abra um no GitLab](https://gitlab.com/DuarteSantos8/opengym/-/merge_requests); veja
   [CONTRIBUTING.md](CONTRIBUTING.md).
 
-> **Sobre o repo GitHub:** `github.com/DuarteSantos8/openGym` está offline porque a conta foi
+> **Sobre o repo GitHub:** `github.com/DuarteSantos8/Zé Treino` está offline porque a conta foi
 > suspensa. **O GitLab é a casa do projeto** — mesmo histórico, mesmas tags, mesmos releases, e
-> a CI que constrói imagens e APK roda lá. (gitea.com/DuarteSantos/openGym foi o primeiro
+> a CI que constrói imagens e APK roda lá. (gitea.com/DuarteSantos/Zé Treino foi o primeiro
 > paliativo e hoje é só espelho.) Números antigos de issues/PRs do GitHub em
 > [CHANGELOG.md](CHANGELOG.md) ficam como referência pura; eles não correspondem à numeração do
 > GitLab.
@@ -250,7 +250,7 @@ Issues e PRs bem-vindos — veja [CONTRIBUTING.md](CONTRIBUTING.md). Boas primei
 planos iniciais, idiomas dos dados de exercícios, importação de outros rastreadores.
 **Uma ⭐ ajuda mais gente a achar o projeto.**
 
-O openGym é livre e segue livre: AGPL, sem assinatura, sem tier pago, nada retido para
+O Zé Treino é livre e segue livre: AGPL, sem assinatura, sem tier pago, nada retido para
 patrocinadores. Se ele substituiu um rastreador pago para você e quer contribuir, há um botão de
 café abaixo (e um badge lá em cima) — uma estrela, um relato de bug ou um merge request valem
 tanto quanto.
@@ -266,19 +266,19 @@ tanto quanto.
 
 ## Licença
 
-**O código próprio do openGym** é [GNU AGPL v3.0](LICENSE) — livre e open source. Você pode
+**O código próprio do Zé Treino** é [GNU AGPL v3.0](LICENSE) — livre e open source. Você pode
 self-hospedar, usar, modificar e compartilhar; se rodar uma versão modificada como serviço de
 rede, deve oferecer o código-fonte dessa versão sob a mesma licença. Ninguém pode transformar o
-openGym num produto fechado e proprietário.
+Zé Treino num produto fechado e proprietário.
 
-**Conteúdo de terceiros não é, e o openGym não pode sublicenciá-lo.** Os metadados e textos de
-instrução dos exercícios vêm de [ExerciseDB v1](https://exercisedb.dev/) e chegam ao openGym via
+**Conteúdo de terceiros não é, e o Zé Treino não pode sublicenciá-lo.** Os metadados e textos de
+instrução dos exercícios vêm de [ExerciseDB v1](https://exercisedb.dev/) e chegam ao Zé Treino via
 [hasaneyldrm/exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset) sob licença
 **MIT**. As imagens e animações são conteúdo de terceiros cobertos nem por essa licença nem pela
 AGPL, e sua titularidade está **atualmente indefinida** — o dataset upstream as atribui a
 [Gym visual](https://gymvisual.com/) sob uma permissão não transferível, enquanto
 [ExerciseDB/AscendAPI](https://exercisedb.io/faq) afirma ser seu criador e dono. Uma clarificação
-foi solicitada. O openGym não as redistribui (sua instância as baixa no primeiro uso) e não
+foi solicitada. O Zé Treino não as redistribui (sua instância as baixa no primeiro uso) e não
 relincencia. Para reutilizar essa mídia, acerte com o detentor dos direitos primeiro.
 
 Avisos completos de terceiros, incluindo a geometria do diagrama corporal: **[NOTICE.md](NOTICE.md)**.

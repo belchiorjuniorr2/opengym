@@ -1,4 +1,4 @@
-/* opengym-api — auth por passkey (WebAuthn) + armazenamento de estado por usuário do openGym
+/* opengym-api — auth por passkey (WebAuthn) + armazenamento de estado por usuário do Zé Treino
    Sem framework, cookies de sessão assinados. Armazenamento: arquivos JSON (padrão) ou
    Postgres/Supabase quando DATABASE_URL está definida — ver store.js.                    */
 import http from 'node:http';
@@ -13,7 +13,7 @@ import * as store from './store.js';
 const PORT = +(process.env.PORT || 3000);
 const RP_ID = process.env.RP_ID || 'localhost';
 const ORIGIN = process.env.ORIGIN || 'http://localhost:8080';
-const RP_NAME = process.env.RP_NAME || 'openGym';
+const RP_NAME = process.env.RP_NAME || 'Zé Treino';
 // Painel admin: administradores casam por uid; INVITE_ONLY trava novos cadastros atrás de um
 // código gerado pelo admin. Ambos desligados por padrão para uma instância nova ficar aberta.
 const ADMIN_UIDS = (process.env.ADMIN_UIDS || '').split(',').map(s => s.trim()).filter(Boolean);
@@ -79,7 +79,7 @@ function scheduleRestTimer(userId, sec) {
   if (t) clearTimeout(t);
   restTimers.set(userId, setTimeout(() => {
     restTimers.delete(userId);
-    sendPush(userId, { title: 'Rest over 💪', body: 'Time for your next set.', tag: 'rest-timer' });
+    sendPush(userId, { title: 'Zé Treino 💪', body: 'Descanso encerrado — próxima série!', tag: 'rest-timer' });
   }, sec * 1000));
 }
 function cancelRestTimer(userId) {
@@ -124,8 +124,8 @@ setInterval(async () => {
     user.lastReminder = now.date;
     saveDb();
     sendPush(user.id, {
-      title: routine ? `${routine.emoji || '🏋️'} ${routine.name} today` : 'Workout planned today',
-      body: "It's on your plan — let's go 💪",
+      title: routine ? `${routine.emoji || '🏋️'} ${routine.name} hoje` : 'Treino planejado pra hoje',
+      body: 'Está no seu plano — bora 💪',
       tag: 'day-reminder'
     });
   }
@@ -535,7 +535,7 @@ const routes = {
   'POST /api/push/test': async (req, res) => {
     const user = readSession(req);
     if (!user) return json(res, 401, { error: 'not signed in' });
-    await sendPush(user.id, { title: 'openGym', body: 'Test notification ✅ — this is what alerts look like.', tag: 'test' });
+    await sendPush(user.id, { title: 'Zé Treino', body: 'Notificação de teste ✅ — é assim que os avisos chegam.', tag: 'test' });
     json(res, 200, { ok: true });
   },
 

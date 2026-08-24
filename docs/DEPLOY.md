@@ -1,6 +1,6 @@
 # Deploy: Supabase + Railway (ou Vercel)
 
-Guia para colocar o openGym no ar **sem servidor próprio**, com banco de dados
+Guia para colocar o Zé Treino no ar **sem servidor próprio**, com banco de dados
 gerenciado no [Supabase](https://supabase.com) e aplicação no
 [Railway](https://railway.app) — ou frontend na Vercel, se preferir.
 
@@ -56,7 +56,7 @@ detecta tudo sozinho.
    | `DATABASE_URL`  | a connection string do Supabase (passo 1.4)                  |
    | `RP_ID`         | seu domínio sem protocolo, ex.: `gym.seudominio.com`         |
    | `ORIGIN`        | URL completa do site, ex.: `https://gym.seudominio.com`      |
-   | `RP_NAME`       | `openGym`                                                    |
+   | `RP_NAME`       | `Zé Treino`                                                    |
    | `SESSION_DAYS`  | `90` (opcional)                                              |
 
    > `PORT` não precisa ser definida: o Railway injeta e a API já usa.

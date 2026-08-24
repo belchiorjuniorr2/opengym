@@ -1,7 +1,7 @@
 {
-  "name": "openGym",
-  "short_name": "openGym",
-  "description": "Personal gym & body weight tracker",
+  "name": "Zé Treino",
+  "short_name": "Zé Treino",
+  "description": "Rastreador pessoal de treinos e peso corporal",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
